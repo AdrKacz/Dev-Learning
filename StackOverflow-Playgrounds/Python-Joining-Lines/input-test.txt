@@ -1,0 +1,11 @@
+2020-07-03 15:21:58,962 ERROR [AIF]: Line: 6, Error: No such member
+2020-07-03 15:21:58,962 ERROR [AIF]: Actual;2020;Jun;YTD;EWHG;<Entity Currency>;A1399;401700;[None];[None];[None];[None];-7537030.790000000000
+2020-07-03 15:21:58,962 ERROR [AIF]: >>>>>>401700
+2020-07-03 15:21:58,962 ERROR [AIF]: 
+2020-07-03 15:21:58,962 ERROR [AIF]: Line: 7, Error: The member of the Account dimension is not base level.
+2020-07-03 15:21:58,962 ERROR [AIF]: Actual;2020;Jun;YTD;EWRA;<Entity Currency>;A1399;[ICP None];[None];[None];[None];[None];44984167.990000000000
+2020-07-03 15:21:58,962 ERROR [AIF]: >>>>>>A1399
+2020-07-03 15:21:58,962 ERROR [AIF]: 
+2020-07-03 15:21:58,962 ERROR [AIF]: Line: 15, Error: The member of the Account dimension is not base level.
+2020-07-03 15:21:58,962 ERROR [AIF]: Actual;2020;Jun;YTD;EWHG;<Entity Currency>;A2090;[ICP None];[None];[None];[None];[None];0.270000000000
+2020-07-03 15:21:58,962 ERROR [AIF]: >>>>>>A2090
