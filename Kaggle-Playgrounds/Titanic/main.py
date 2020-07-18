@@ -134,6 +134,7 @@ if __name__ == "__main__":
 
 	train_data_Enc = train_data[features].astype(np.int)
 
+	# To Correct, I produce the Transpose here.
 	CDT = pd.DataFrame([
 		train_data.Sex_Enc.astype(np.int) == 0,
 		train_data.Sex_Enc.astype(np.int) == 1,
