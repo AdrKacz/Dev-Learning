@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Playground_01"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [input]
@@ -120,6 +121,14 @@ shoot_2={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="players"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="enemies_hit_boxes"
+2d_physics/layer_4="boxes"
+2d_physics/layer_5="dead_body"
 
 [rendering]
 
