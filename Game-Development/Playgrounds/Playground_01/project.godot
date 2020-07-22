@@ -19,6 +19,12 @@ config/name="Playground_01"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/always_on_top=true
+window/size/test_width=500
+window/size/test_height=500
+
 [input]
 
 left_1={

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Square.tscn" type="PackedScene" id=2]
+
+[node name="Main" type="Node2D"]
+
+[node name="Square" parent="." instance=ExtResource( 2 )]
+position = Vector2( 320, 568 )
+
+[node name="Background" parent="." instance=ExtResource( 1 )]

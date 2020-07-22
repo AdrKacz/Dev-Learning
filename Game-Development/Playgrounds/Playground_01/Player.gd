@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
-export (int) var speed = 100
+const Enemy: = preload("res://Enemy.gd")
+
+export (int) var speed = 150
 export (int) var rotation_speed = 5
-export (int, 0, 200) var push = 5
+export (int, 0, 10) var push = 10
 export (int, 1, 5) var max_shooting_time = 1
 export (int, 0, 10) var healing_time_out = 1
 
@@ -97,15 +99,6 @@ func _process(delta):
 		is_shooting = false
 	
 	shooting_time_remaining = clamp(shooting_time_remaining, 0, max_shooting_time)
-	
-#	RayCast Projection, stop on contact with anything.
-	var collider = $RayCast2D.get_collider()
-	if collider:
-		hit_pos = $RayCast2D.get_collision_point()
-		if collider.is_in_group("enemies") and is_shooting:
-			collider.die()
-	else:
-		hit_pos = null
 		
 #	If is dead and is being healed, heal every frame.
 	if is_dead and is_being_healed:
@@ -130,11 +123,20 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 #		If enemies, then the player die
-		if collision.collider.is_in_group("enemies"):
+		if collision.collider is Enemy:
 			die()
 #		If boxes, then jus push the box(es)
 		elif collision.collider.is_in_group("boxes"):
 			collision.collider.apply_central_impulse(-collision.normal * push)
+			
+#	RayCast Projection, stop on contact with anything.
+	var collider = $RayCast2D.get_collider()
+	if collider:
+		hit_pos = $RayCast2D.get_collision_point()
+		if collider.is_in_group("enemies") and is_shooting:
+			collider.die()
+	else:
+		hit_pos = null
 
 func _draw():
 #	Direction the player is looking at
