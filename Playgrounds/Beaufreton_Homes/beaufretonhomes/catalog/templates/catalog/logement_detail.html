@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<h1>{{ logement.title }} </h1>
+
+	<p>Capacité: {{ logement.capacite }}</p>
+
+	<h4>Reservations déjà en cours:</h4>
+	<ul>
+	{% for reservation in logement.reservation_set.all %}
+		<li> {{ reservation }} </li>
+	{% endfor %}
+	</ul>
+	
+{% endblock content %}
+
