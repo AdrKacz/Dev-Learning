@@ -11,14 +11,17 @@
 	{# Add additional CSS in static file #}
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	{% block add_on %}
+	{# Use to place special dependencies for a special page #}
+	{% endblock add_on %}
 </head>
 <body>
 	{% block sidebar %}
 	<ul>
 		<li><a href="{% url 'index' %}">Home</a></li>
 		<li><a href="{% url 'logements' %}">Logements</a></li>
-		<li><a href="">Informations</a></li>
-		<li><a href="">FAQ</a></li>
+		<li><a href="{% url 'informations' %}">Informations</a></li>
+		<li><a href="{% url 'faq' %}">FAQ</a></li>
 	</ul>
 		
 	{% endblock sidebar %}

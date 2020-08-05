@@ -53,5 +53,16 @@ class Reservation(models.Model):
 	def __str__(self):
 		return f'{self.logement.nom} ({self.debut} - {self.fin})'
 
+class QuestionReponse(models.Model):
+	"""Model representing one item of the FAQ"""
 
+	question = models.TextField(
+		max_length=1000,
+		help_text="Entre une question de la FAQ")
 
+	reponse = models.TextField(
+		max_length=1000,
+		help_text="Entre la reponse a la question")
+
+	def __str__(self):
+		return f"[{self.question}] {self.reponse}"

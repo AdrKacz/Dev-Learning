@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<h1>FAQ</h1>
+
+	<ul>
+	{% for qa in questionreponse_list %}
+	<li>
+		{{ qa }}
+	</li>
+		
+	{% endfor %}
+	</ul>
+	
+
+{% endblock content %}

@@ -1,5 +1,5 @@
 // Selectors
-const title = document.querySelector("h2")
+const title = document.querySelector("h2");
 const text = document.querySelector("p");
 const train_btn = document.querySelector("#train");
 const play_btn = document.querySelector("#play");

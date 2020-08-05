@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from .models import Logement, Reservation
+from .models import Logement, Reservation, QuestionReponse
 
 def index(request):
 	"""View function for home page of site."""
@@ -22,7 +22,13 @@ def index(request):
 		context={'num_logement': num_logement, 'num_visits': num_visits},
 		)
 
+def informations(request):
+	"""View function for information page of site."""
+	return render(
+		request,
+		'information.html')
 
+	
 from django.views import generic
 
 class LogementListView(generic.ListView):
@@ -32,4 +38,8 @@ class LogementListView(generic.ListView):
 class LogementDetailView(generic.DetailView):
 	"""Generic class-based detail view for a Logement."""
 	model = Logement
+
+class QuestionReponseListView(generic.ListView):
+	"""Generic class=based view for a list of Q&A"""
+	model = QuestionReponse
 

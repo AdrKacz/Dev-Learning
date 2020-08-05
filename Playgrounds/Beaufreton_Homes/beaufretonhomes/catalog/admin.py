@@ -2,13 +2,15 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Logement, Reservation
+from .models import Logement, Reservation, QuestionReponse
 
 
 """ Minimal registrations of Models.
 admin.site.register(Logement)
 admin.site.register(Reservation)
 """
+
+admin.site.register(QuestionReponse)
 
 
 class ReservationsInline(admin.TabularInline):
@@ -48,3 +50,4 @@ class ReservationAdmin(admin.ModelAdmin):
 			'fields': ('debut', 'fin')
 		}),
 	)
+
