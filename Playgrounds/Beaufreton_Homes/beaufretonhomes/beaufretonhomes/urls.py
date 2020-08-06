@@ -39,3 +39,16 @@ from django.views.generic import RedirectView
 urlpatterns += [
 	path('', RedirectView.as_view(url='/catalog/', permanent=True)),
 ]
+
+# To handle images
+from django.conf.urls import url
+from django.views.static import serve
+
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT
+            })
+    ]
+# else:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

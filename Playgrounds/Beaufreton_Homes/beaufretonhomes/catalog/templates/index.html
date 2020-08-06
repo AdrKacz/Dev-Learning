@@ -1,10 +1,5 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-	<h1>Home</h1>
-	<p>Bienvenue chez nous!</p>
-	<ul>
-		<li>Logements: {{ num_logement }} </li>
-		<li>Visites: {{ num_visits }}</li>
-	</ul>
+	<img src="/media/{{ background.image}}">
 {% endblock content %}

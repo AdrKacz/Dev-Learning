@@ -53,16 +53,41 @@ class Reservation(models.Model):
 	def __str__(self):
 		return f'{self.logement.nom} ({self.debut} - {self.fin})'
 
-class QuestionReponse(models.Model):
-	"""Model representing one item of the FAQ"""
+class Photographie(models.Model):
+	"""Model representing one photographe"""
 
-	question = models.TextField(
-		max_length=1000,
-		help_text="Entre une question de la FAQ")
+	nom = models.CharField(
+		max_length=100,
+		help_text="Nom de la photo")
 
-	reponse = models.TextField(
-		max_length=1000,
-		help_text="Entre la reponse a la question")
+	image = models.ImageField(
+		help_text="Insere la photo ici")
+
+	logement = models.ForeignKey(
+		'Logement',
+		on_delete=models.SET_NULL,
+		null=True,
+		blank=True)
+
+	page_principale = models.BooleanField(
+		help_text="True si l'image peut apparaitre en fond d'ecran, False sinon")
+
+	class Meta:
+		ordering = ['logement', 'nom']
 
 	def __str__(self):
-		return f"[{self.question}] {self.reponse}"
+		return f'{self.nom}'
+
+# class QuestionReponse(models.Model):
+# 	"""Model representing one item of the FAQ"""
+
+# 	question = models.TextField(
+# 		max_length=1000,
+# 		help_text="Entre une question de la FAQ")
+
+# 	reponse = models.TextField(
+# 		max_length=1000,
+# 		help_text="Entre la reponse a la question")
+
+# 	def __str__(self):
+# 		return f"[{self.question}] {self.reponse}"

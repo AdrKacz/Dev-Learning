@@ -2,7 +2,7 @@
 <html>
 <head>
 	{% block page_title %}
-		<title>Gites des Beaufreton</title>
+		<title>Les pieds dans l'herbe</title>
 	{% endblock page_title %}
 
 	<meta charset="utf-8">
@@ -16,16 +16,6 @@
 	{% endblock add_on %}
 </head>
 <body>
-	{% block sidebar %}
-	<ul>
-		<li><a href="{% url 'index' %}">Home</a></li>
-		<li><a href="{% url 'logements' %}">Logements</a></li>
-		<li><a href="{% url 'informations' %}">Informations</a></li>
-		<li><a href="{% url 'faq' %}">FAQ</a></li>
-	</ul>
-		
-	{% endblock sidebar %}
-
 	{% block content %}
 		
 	{% endblock content %}
