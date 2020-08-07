@@ -54,7 +54,7 @@ class Reservation(models.Model):
 		return f'{self.logement.nom} ({self.debut} - {self.fin})'
 
 class Photographie(models.Model):
-	"""Model representing one photographe"""
+	"""Model representing one photographe."""
 
 	nom = models.CharField(
 		max_length=100,
@@ -78,16 +78,24 @@ class Photographie(models.Model):
 	def __str__(self):
 		return f'{self.nom}'
 
-# class QuestionReponse(models.Model):
-# 	"""Model representing one item of the FAQ"""
 
-# 	question = models.TextField(
-# 		max_length=1000,
-# 		help_text="Entre une question de la FAQ")
+class Caracteristique(models.Model):
+	"""Model representing one characteristic."""
 
-# 	reponse = models.TextField(
-# 		max_length=1000,
-# 		help_text="Entre la reponse a la question")
+	icon = models.CharField(
+		max_length=100,
+		help_text='Texte à copier/coller de fontawesome.com')
 
-# 	def __str__(self):
-# 		return f"[{self.question}] {self.reponse}"
+	description = models.TextField(
+		max_length=300,
+		help_text="Description de la caracteristique (rester succinct)")
+
+	z_axis = models.IntegerField(
+		default=0,
+		help_text="Ordre selon lequel les caracteristique sont tries pour apparaitre sur la page (plusieur caracteristique peuvent avoir le meme z_axis)")
+
+	class Meta:
+		ordering = ["z_axis"]
+
+	def __str__(self):
+		return f'{self.description}'

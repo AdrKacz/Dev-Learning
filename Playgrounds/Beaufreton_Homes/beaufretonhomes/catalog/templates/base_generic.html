@@ -8,9 +8,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	{# Icon API #}
+	<script src="https://kit.fontawesome.com/abb297e176.js" crossorigin="anonymous"></script>
+
+	{# Font family #}
+	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+	
 	{# Add additional CSS in static file #}
 	{% load static %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
 	{% block add_on %}
 	{# Use to place special dependencies for a special page #}
 	{% endblock add_on %}

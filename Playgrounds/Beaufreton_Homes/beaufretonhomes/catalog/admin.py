@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Logement, Reservation, Photographie
+from .models import Logement, Reservation, Photographie, Caracteristique
 
 
 """ Minimal registrations of Models.
@@ -11,6 +11,7 @@ admin.site.register(Reservation)
 """
 
 admin.site.register(Photographie)
+admin.site.register(Caracteristique)
 
 
 class ReservationsInline(admin.TabularInline):
