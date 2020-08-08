@@ -2,16 +2,13 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Logement, Reservation, Photographie, Caracteristique
+from .models import Logement, Reservation, Photographie, Caracteristique, Option
 
 
-""" Minimal registrations of Models.
+""" Minimal registrations of Model exemple
 admin.site.register(Logement)
-admin.site.register(Reservation)
 """
 
-admin.site.register(Photographie)
-admin.site.register(Caracteristique)
 
 
 class ReservationsInline(admin.TabularInline):
@@ -52,3 +49,35 @@ class ReservationAdmin(admin.ModelAdmin):
 		}),
 	)
 
+@admin.register(Photographie)
+class PhotographieAdmin(admin.ModelAdmin):
+	"""Administration object for Caracteristique models.
+	Defines:
+		- 	fields to be displayed in list view (list_display)
+		-	filters that will be displayed in sidebar (list_filter)
+	"""
+
+	list_display = ('nom', 'logement', 'page_principale')
+	list_filter = ('logement', 'page_principale')
+
+@admin.register(Caracteristique)
+class CaracteristiqueAdmin(admin.ModelAdmin):
+	"""Administration object for Caracteristique models.
+	Defines:
+		- 	fields to be displayed in list view (list_display)
+		-	filters that will be displayed in sidebar (list_filter)
+	"""
+
+	list_display = ('description', 'icon', 'z_axis')
+	list_filter = ('z_axis',)
+
+@admin.register(Option)
+class OptionAdmin(admin.ModelAdmin):
+	"""Administration object for Caracteristique models.
+	Defines:
+		- 	fields to be displayed in list view (list_display)
+		-	filters that will be displayed in sidebar (list_filter)
+	"""
+
+	list_display = ('nom', 'prix', 'plusieurs')
+	list_filter = ('prix', 'plusieurs')

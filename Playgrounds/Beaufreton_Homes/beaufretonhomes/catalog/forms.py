@@ -5,16 +5,21 @@ from django.utils.translation import gettext_lazy as _
 
 import datetime
 
+# Import Option to count them before creating the Form
+# Import Reservations to check if the reservation is available
+
+from .models import Reservation, Option
+
 
 class PickDatesForm(forms.Form):
 	start_date = forms.DateField(
-		help_text="Arrivée",
+		help_text="Date d'arrivée",
 		required=True,
 		widget=forms.TextInput(attrs={
 			"value": "Arrivée"}))
 
 	end_date = forms.DateField(
-		help_text="Départ",
+		help_text="Date de départ",
 		required=True,
 		widget=forms.TextInput(attrs={
 			"value": "Départ"}))
@@ -47,3 +52,31 @@ class PickDatesForm(forms.Form):
 		if data_start and data_end:
 			if data_end <= data_start:
 				raise ValidationError(_('Invalid date - end date before start date'))
+
+
+class PickDatesOptionsForm(PickDatesForm):
+
+	def __init__(self, *args, **kwargs):
+		super(PickDatesOptionsForm, self).__init__(*args, **kwargs)
+
+		# Dynamic Field
+		for option in Option.objects.all():
+			if option.plusieurs:
+				self.fields[str(option.id)] = forms.IntegerField(
+					label=option.nom,
+					initial=0,
+					min_value=0,
+					max_value=int(option.maximum),
+					help_text="option", 
+					required=True)
+			else:
+				self.fields[str(option.id)] = forms.BooleanField(
+					label=option.nom,
+					help_text="option",
+					required=False)
+
+	# Static Field
+	# Already defined above, with clean_static-field() and clean()
+
+
+

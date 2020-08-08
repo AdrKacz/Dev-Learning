@@ -2,9 +2,9 @@
 
 {% block content %}
 {# First Block (Presentation) #}
-	<div id="first" style="
+	<div class="first" style="
 	background-image: url('/media/{{ background.image}}');">
-		<div class="up-side">
+		<div class="up_side">
 			<form action="" method="post">
 				{% csrf_token %}
 				{% for field in form %}
@@ -14,7 +14,7 @@
 				<button type="submit"><i class="fas fa-search"></i></button>		
 			</form>
 		</div>
-		<div class="left-side">
+		<div class="left_side">
 			<p>Un bol d'air frais !</p>
 
 			<p><a href="#third" class="button">Découvrir</a></p>
@@ -22,7 +22,7 @@
 	</div>
 
 {# Second Block (Characteristic) #}
-	<div id="second">
+	<div class="second">
 		<h1>Les caractéristiques du gîte</h1>
 
 		<section id="features">
@@ -32,72 +32,16 @@
 				<p>{{ characteristic.description | linebreaks }}</p>
 			</article>
 			{% endfor %}
-			<!--<article>
-				<p><i class="fas fa-ruler-horizontal"></i></p>
-				<p>Gite de 170m²</p>
-			</article>
-
-			<article>
-				<p><i class="fas fa-users"></i></p>
-				<p>Capacité d'acceuil: 15 personnes</p>
-			</article>
-
-			<article>
-				<p><i class="fas fa-bed"></i></p>
-				<p>3 lits 2 personnes<br>9 lits 1 personne</p>
-			</article>
-
-			<article>
-				<p><i class="fas fa-bath"></i></p>
-				<p>4 Salles d'eau<br>2 WC indépendants</p>
-			</article>
-
-			<article>
-				<p><i class="fas fa-cookie-bite"></i></p>
-				<p>Cuisine équipé, Four, Micro-ondes, Réfrigérateur, Congélateur, Lave vaiselle, Cafetière</p>
-			</article>
-
-			<article>
-				<p><i class="fas fa-tshirt"></i></p>
-				<p>Lave linge</p>
-			</article>
-
-			<article>
-				<p><i class="fas fa-tv"></i></p>
-				<p>Télévision, Cable/Sat</p>
-			</article>
-
-			<article>
-				<p><i class="fas fa-wifi"></i></p>
-				<p>Accès Internet</p>
-			</article>-->
 		</section>
 	</div>
 
 {# Thirs Block (Galery) #}
-	<div id="third">
+	<div class="third">
 		<h1>Galerie Photo</h1>
 		<section id="photos">
 		{% for image in all_images %}
 			<img src="/media/{{ image }}">
 		{% endfor %}
-		</section>
-	</div>
-
-{# Footers (Informations) #}
-	<div id="footers">
-		<section id="footers-infos">
-			<article>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget pretium nulla, vel eleifend velit. Integer lacinia vitae neque quis semper.</p>
-			</article>
-
-			<article>
-				<p>Curabitur laoreet porta efficitur. Integer id risus mauris. Mauris ac mauris ac mauris venenatis ornare.</p>
-			</article>
-
-			<article>
-				<p>Cras id ipsum et nulla luctus rhoncus. Cras sit amet dolor volutpat, maximus dui hendrerit, maximus velit.</p>
-			</article>
 		</section>
 	</div>
 {% endblock content %}

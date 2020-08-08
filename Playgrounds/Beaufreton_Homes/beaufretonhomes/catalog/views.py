@@ -3,11 +3,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 # To handle forms
-from catalog.forms import PickDatesForm
+from catalog.forms import PickDatesForm, PickDatesOptionsForm
 
 # Create your views here.
 
-from .models import Logement, Reservation, Photographie, Caracteristique
+from .models import Logement, Reservation, Photographie, Caracteristique, Option
 
 def index(request):
 	"""View function for home page of site.
@@ -25,7 +25,7 @@ def index(request):
 
 	# [DEBUG ONLY] Create more image from one
 	if all_images.count() < 10:
-		all_images = [image[0] for image in list(all_images.values_list('image'))] * 5
+		all_images = [image[0] for image in list(all_images.values_list('image'))] * 10
 		all_images = all_images[:10]
 
 	
@@ -54,12 +54,11 @@ def index(request):
 
 	# If this is a GET (or any other method) create the default form
 	else:
-		form = PickDatesForm(initial={'start_date': '', 'end_date': ''})
+		form = PickDatesForm()
 		context['form'] = form
 
 
 	# Render the HTML template index.html with the data in the context variable.
-	print("Context:", context)
 	return render(
 		request,
 		'index.html',
@@ -70,9 +69,53 @@ def details(request):
 	"""View function for second page of the site.
 	Home details and second date selection.
 	"""
-	#home_images = Photographie.objects.filter(logement)
 
+	# Get 5 photos of the home at random
+	home_images = Photographie.objects.exclude(logement__exact=None).order_by('?')[:5]
 
+	# [DEBUG]
+	if home_images.count() < 5:
+		home_images = [image[0] for image in list(home_images.values_list('image'))] * 5
+		home_images = home_images[:5]
+
+	context = {
+	'big_image': home_images[0],
+	'home_images': home_images[1:],
+	}
+
+	# If this is a POST request then process the Form data
+	if request.method == 'POST':
+		# Create a form instance and populate it with the data from the request (binding)
+		form = PickDatesOptionsForm(request.POST)
+
+		# Link the Options info with the Form result
+		form_option = list()
+		for field in form:
+			if field.help_text == "option":
+				form_option.append((field, Option.objects.get(pk=int(field.auto_id[3:]))))
+
+		context['form_option'] = form_option
+		context['form'] = form
+
+	# If this is a GET (or any other method), create the default form
+	else:
+		# Get the previous date enter by the user (if any)
+		# TO DO
+
+		form = PickDatesOptionsForm()
+
+		# Link the Options info with the Form result
+		form_option = list()
+		for field in form:
+			if field.help_text == "option":
+				form_option.append((field, Option.objects.get(pk=int(field.auto_id[3:]))))
+
+		context['form_option'] = form_option
+		context['form'] = form
+
+	print('\n',context['form_option'], '\n')
 	return render(
 		request,
-		'home-details.html',)
+		'home-details.html',
+		context=context,
+		)

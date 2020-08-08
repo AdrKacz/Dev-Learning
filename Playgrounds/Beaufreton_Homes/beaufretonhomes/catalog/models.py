@@ -70,7 +70,7 @@ class Photographie(models.Model):
 		blank=True)
 
 	page_principale = models.BooleanField(
-		help_text="True si l'image peut apparaitre en fond d'ecran, False sinon")
+		help_text="Cocher si l'image peut apparaitre en fond d'ecran")
 
 	class Meta:
 		ordering = ['logement', 'nom']
@@ -99,3 +99,29 @@ class Caracteristique(models.Model):
 
 	def __str__(self):
 		return f'{self.description}'
+
+
+class Option(models.Model):
+	"""Model representing one option for the "Logement"."""
+
+	nom = models.CharField(
+		max_length=20,
+		help_text="Nom de l'option (au singulier si plusieurs)")
+
+	prix = models.IntegerField(
+		default=0,
+		help_text="Prix de l'option")
+
+	plusieurs = models.BooleanField(
+		default=False,
+		help_text="Cocher si le client peut en prendre plusieurs")
+
+	maximum = models.IntegerField(
+		default=1,
+		help_text="Nombre d' 'object' disponible au maximum")
+
+	class Meta:
+		ordering = ["nom", "prix"]
+
+	def __str__(self):
+		return f"{self.nom}"

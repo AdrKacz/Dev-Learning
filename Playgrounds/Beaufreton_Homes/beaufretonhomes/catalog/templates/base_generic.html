@@ -17,6 +17,7 @@
 	{# Add additional CSS in static file #}
 	{% load static %}
 	<link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css' %}">
+	
 	{% block add_on %}
 	{# Use to place special dependencies for a special page #}
 	{% endblock add_on %}
@@ -25,5 +26,22 @@
 	{% block content %}
 		
 	{% endblock content %}
+	
+	{# Footers (Informations) #}
+	<div class="footers">
+		<section id="footers_infos">
+			<article>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget pretium nulla, vel eleifend velit. Integer lacinia vitae neque quis semper.</p>
+			</article>
+
+			<article>
+				<p>Curabitur laoreet porta efficitur. Integer id risus mauris. Mauris ac mauris ac mauris venenatis ornare.</p>
+			</article>
+
+			<article>
+				<p>Cras id ipsum et nulla luctus rhoncus. Cras sit amet dolor volutpat, maximus dui hendrerit, maximus velit.</p>
+			</article>
+		</section>
+	</div>
 </body>
 </html>

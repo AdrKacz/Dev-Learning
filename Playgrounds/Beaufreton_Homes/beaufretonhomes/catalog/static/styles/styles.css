@@ -12,42 +12,44 @@ div {
 	height: 100vh;
 }
 
-div#first {
-	background-color: white;
+div.first {
+	background-color: #F8F8F4;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 }
 
-div#second {
-	background-color: white;
+div.second {
+	background-color: #F8F8F4;
 }
 
-div#third {
-	background-color: white;
+div.third {
+	background-color: #F8F8F4;
 }
 
-div#footers {
-	height: 50vh;
-	background-color: black;
+div.footers {
+	height: 40vh;
+	background-color: #2C1E1E;
 }
 
-p {
+p, button, input, h1, h2, label {
 	margin: 0;
 	font-family: 'Lora', serif;
+	color: #2C1E1E;
 }
 
 h1 {
-	margin: 0;
-	font-family: 'Lora', serif;
-
 	padding: 1em 0 0.5em 0;
 	text-align: center;
 
 	font-size: 3vw;
 }
 
-div.up-side {
+button {
+	cursor: pointer;
+}
+
+div.up_side {
 	box-sizing: border-box;
 	height: 20vh;
 	width: 100%;
@@ -57,7 +59,7 @@ div.up-side {
 	text-align: center;
 }
 
-div.up-side input {
+div.up_side input {
 	border: 0;
 	padding: 0;
 	margin: 0;
@@ -68,12 +70,11 @@ div.up-side input {
 	height: 5vh;
 	width: 25vw;
 
-	font-family: 'Lora', serif;
 	font-size: 1em;
 	letter-spacing: 0.3em;
 }
 
-div.up-side button, div.up-side button:hover {
+div.up_side button, div.up_side button:hover {
 	border: 0;
 	padding: 0;
 	margin: 0;
@@ -82,19 +83,19 @@ div.up-side button, div.up-side button:hover {
 	width: 2em;
 	border-radius: 50%;
 
-	background-color: gray;
+	background-color: #727E76;
 
 	font-size: 1em;
-	color: white;
+	color: #F8F8F4;
 }
 
-div.up-side button:hover {
-	background-color: black;
+div.up_side button:hover {
+	background-color: #2C1E1E;
 
-	color: white;
+	color: #BF99B0;
 }
 
-div.left-side {
+div.left_side {
 	box-sizing: border-box;
 	height: 80vh;
 	width: 25%;
@@ -105,42 +106,42 @@ div.left-side {
 	padding-top: 10vh;
 }
 
-div.left-side  p {
-	color: white;
+div.left_side  p {
+	color: #F8F8F4;
 }
 
-div.left-side a.button {
+div.left_side a.button {
 	outline: none;
 	text-decoration: none;
 
 	font-size: 0.6em;
-	color: gray;
-	background-color: white;
+	color: #727E76;
+	background-color: #F8F8F4;
 
 	border-radius: 0.4em;
 
 	padding: 0.1em 0.3em;
 }
 
-div.left-side a.button:link {
+div.left_side a.button:link {
 	
 }
 
-div.left-side a.button:visited {
+div.left_side a.button:visited {
 	
 }
 
-div.left-side a.button:focus {
+div.left_side a.button:focus {
 	
 }
 
-div.left-side a.button:hover {
-	color: white;
-	background-color: gray;
+div.left_side a.button:hover {
+	color: #BF99B0;
+	background-color: #727E76;
 }
 
 
-div.left-side a.button:active {
+div.left_side a.button:active {
 	
 }
 
@@ -178,19 +179,207 @@ section#photos {
 
 section#photos img {
 	box-sizing: border-box;
-	height: min(35vh, 20vw);
-	width: min(35vh, 20vw);
-	margin: 1vh 1vw;
+	height: max(min(40vh, 20vw), min(20vh, 40vw));
+	width: max(min(40vh, 20vw), min(20vh, 40vw));
+	padding: 1vh 1vw;
 	object-fit: cover;
 }
 
-section#footers-infos {
+/*----------------------------------------*/
+
+h1.left {
+	padding: 0.2em 0.5em;
+	margin: 0;
+	text-align: left;
+}
+
+section#photos_logement {
+	display: flex;
+	flex-wrap: wrap;
+
+	height: 80vh;
+	width: 80vw;
+
+	margin: auto;
+
+	align-items: center;
+	justify-content: space-around;
+}
+
+section#photos_logement > * {
+	box-sizing: border-box;
+	height: max(min(80vh, 40vw), min(40vh, 80vw));
+	width: max(min(80vh, 40vw), min(40vh, 80vw));
+	object-fit: cover;
+
+	padding: max(2vh, 2vw);
+}
+
+section#photos_logement section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+section#photos_logement section > img {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	object-fit: cover; 
+
+	padding: max(0.5vh, 0.5vw)
+}
+
+
+section#info_logement {
+	display: flex;
+
+	height: 100%;
+	width: 98%;
+}
+
+section#info_logement > section {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+
+	flex: 60%;
+
+	/*justify-content: space-around;*/
+	margin: 0;
+	padding: 2vh 2vw;
+}
+
+section#info_logement > section > article {
+	margin: 0;
+	padding: 0 0 15vh;
+}
+
+section#info_logement > section > article p:first-child {
+	font-size: 2.5em;
+	color: #2C1E1E;
+}
+
+section#info_logement > section > article p{
+	font-size: 1.5em;
+	color: #727E76;
+}
+
+section#info_logement > form {
+	display: flex;
+	flex-direction: column;
+
+	flex: 40%;
+
+	align-items: center;
+
+	padding: 1vh 1vw;
+}
+
+section#info_logement > form > div {
+	box-sizing: border-box;
+	width: 100%;
+	height: 40%;
+
+	border: 2px solid #2C1E1E;
+	border-radius: 2em;
+
+	padding: 1vh 1vw;
+	margin: 0;
+
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+section#info_logement > form > div h2 {
+	font-size: 3em;
+}
+
+section#info_logement > form > div section {
+	margin: 0 auto;
+
+	display: flex;
+	justify-content: space-around;
+}
+
+section#info_logement > form > div section input{
+	padding: 0;
+	margin: 0;
+	border: 1px solid #2C1E1E;
+	border-radius: 0.5em;
+
+	font-size: 1.5em;
+	letter-spacing: 0.3em;
+
+	text-align: center;
+
+	height: 2em;
+	width: 40%;
+}
+
+section#info_logement > form > div button {
+	padding: 0;
+	margin: 0 auto;
+	border: 0;
+
+	background-color: #21C2EE;
+	color: #F8F8F4;
+
+	width: 90%;
+	height: 2.5em;
+
+	font-size: 1.5em;
+
+	border-radius: 0.8em;
+}
+
+section#info_logement > form > article{
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: column;
+  	justify-content: space-between;
+}
+
+section#info_logement > form > article > section{
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: row;
+
+	padding: 2vh 0;
+
+	font-size: 1.5em;
+
+	width:35vw;
+}
+
+section#info_logement > form > article > section > input[type=number]{
+	font-size: 1em;
+	width: min(10%, 2em);
+
+	padding: 0;
+}
+
+section#info_logement > form > article > section *{
+	padding: 0 2vw;
+}
+
+/*----------------------------------------*/
+
+
+/*----------------------------------------*/
+
+section#footers_infos {
 	display: flex;
 	flex: 30vw;
 }
 
-section#footers-infos article {
-	color: white;
+section#footers_infos article {
+	color: #F8F8F4;
 	padding: 5vh 2vw 3vh;
 	width: 30vw;
+}
+
+section#footers_infos p {
+	color: #F8F8F4;
 }
