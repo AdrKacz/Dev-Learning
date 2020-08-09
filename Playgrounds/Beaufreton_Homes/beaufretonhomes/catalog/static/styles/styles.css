@@ -7,12 +7,10 @@ body {
   overflow-x: hidden;
 }
 
-div {
+div.first {
 	width: 100vw;
 	height: 100vh;
-}
 
-div.first {
 	background-color: #F8F8F4;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -20,15 +18,23 @@ div.first {
 }
 
 div.second {
+	width: 100vw;
+	height: 100vh;
+
 	background-color: #F8F8F4;
 }
 
 div.third {
+	width: 100vw;
+	height: 100vh;
+
 	background-color: #F8F8F4;
 }
 
 div.footers {
+	width: 100vw;
 	height: 40vh;
+
 	background-color: #2C1E1E;
 }
 
@@ -186,11 +192,14 @@ section#photos img {
 }
 
 /*----------------------------------------*/
+/*----------------------------------------*/
+/*----------------------------------------*/
 
 h1.left {
-	padding: 0.2em 0.5em;
-	margin: 0;
+	padding: 0.2em 2vw;
 	text-align: left;
+
+	font-size: 3em;
 }
 
 section#photos_logement {
@@ -219,15 +228,31 @@ section#photos_logement section {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
+
 section#photos_logement section > img {
 	box-sizing: border-box;
 	height: 100%;
 	width: 100%;
 	object-fit: cover; 
 
-	padding: max(0.5vh, 0.5vw)
+	padding: 0;
 }
 
+section#photos_logement section > img:nth-of-type(1) {
+	padding: 0 0.2em 0.2em 0;
+}
+
+section#photos_logement section > img:nth-of-type(2) {
+	padding: 0 0 0.2em 0.2em;
+}
+
+section#photos_logement section > img:nth-of-type(3) {
+	padding: 0.2em 0.2em 0 0;
+}
+
+section#photos_logement section > img:nth-of-type(4) {
+	padding: 0.2em 0 0 0.2em;
+}
 
 section#info_logement {
 	display: flex;
@@ -245,7 +270,7 @@ section#info_logement > section {
 
 	/*justify-content: space-around;*/
 	margin: 0;
-	padding: 2vh 2vw;
+	padding: 3vh 2vw 2vh;
 }
 
 section#info_logement > section > article {
@@ -258,7 +283,7 @@ section#info_logement > section > article p:first-child {
 	color: #2C1E1E;
 }
 
-section#info_logement > section > article p{
+section#info_logement > section > article p {
 	font-size: 1.5em;
 	color: #727E76;
 }
@@ -272,15 +297,16 @@ section#info_logement > form {
 	align-items: center;
 
 	padding: 1vh 1vw;
+
+	height: 90%;
 }
 
 section#info_logement > form > div {
 	box-sizing: border-box;
 	width: 100%;
-	height: 40%;
 
 	border: 2px solid #2C1E1E;
-	border-radius: 2em;
+	border-radius: 1em;
 
 	padding: 1vh 1vw;
 	margin: 0;
@@ -298,22 +324,26 @@ section#info_logement > form > div section {
 	margin: 0 auto;
 
 	display: flex;
-	justify-content: space-around;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
 }
 
-section#info_logement > form > div section input{
+section#info_logement > form > div section input {
 	padding: 0;
-	margin: 0;
+	margin: 1vh 0;
 	border: 1px solid #2C1E1E;
 	border-radius: 0.5em;
+
+	background-color: transparent;
 
 	font-size: 1.5em;
 	letter-spacing: 0.3em;
 
 	text-align: center;
 
-	height: 2em;
-	width: 40%;
+	height: 1.3em;
+	width: 10em;
 }
 
 section#info_logement > form > div button {
@@ -324,15 +354,15 @@ section#info_logement > form > div button {
 	background-color: #21C2EE;
 	color: #F8F8F4;
 
-	width: 90%;
-	height: 2.5em;
+	width: 100%;
+	height: 2em;
 
 	font-size: 1.5em;
 
 	border-radius: 0.8em;
 }
 
-section#info_logement > form > article{
+section#info_logement > form > article {
 	box-sizing: border-box;
 
 	display: flex;
@@ -340,7 +370,7 @@ section#info_logement > form > article{
   	justify-content: space-between;
 }
 
-section#info_logement > form > article > section{
+section#info_logement > form > article > section {
 	box-sizing: border-box;
 
 	display: flex;
@@ -353,25 +383,171 @@ section#info_logement > form > article > section{
 	width:35vw;
 }
 
-section#info_logement > form > article > section > input[type=number]{
+section#info_logement > form > article > section > input[type=number] {
 	font-size: 1em;
-	width: min(10%, 2em);
 
 	padding: 0;
+
+	width: 1.5em;
+	height: 1em;
 }
 
-section#info_logement > form > article > section *{
+section#info_logement > form > article > section * {
 	padding: 0 2vw;
 }
 
 /*----------------------------------------*/
+/*----------------------------------------*/
+/*----------------------------------------*/
+
+section#confirmation {
+	display: flex;
+
+	margin: 0;
+	padding: 2vh 2vw;
+}
+
+section#confirmation > form {
+	display: flex;
+	flex-direction: column;
+
+	width:60%;
+}
+
+section#confirmation > form h2 {
+	font-size: 2em;
+}
+
+section#confirmation > form > div {
+	margin: 2vh auto 4vh;
+
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+section#confirmation > form > div > input {
+	padding: 0;
+	margin: 1vh 1vw 1vh 0;
+	border: 0;
+
+	font-size: 1.5em;
+	letter-spacing: 0.3em;
+	background-color: transparent;
+	color: #727E76;
+
+	text-align: left;
+
+	height: 1.3em;
+	width: 10em;
+}
+
+section#confirmation > form > section {
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: row;
+
+	padding: 2vh 0;
+
+	font-size: 1.5em;
+
+	width:35vw;
+}
+
+section#confirmation > form > section > input[type=number] {
+	font-size: 1em;
+
+	padding: 0;
+
+	width: 1.5em;
+	height: 1em;
+}
+
+section#confirmation > form > section * {
+	padding: 0 2vw;
+}
 
 
+section#confirmation > section {
+	display: flex;
+	flex-direction: column;
+
+	width: 40%;
+}
+
+section#confirmation > section > div {
+	box-sizing: border-box;
+	width: 100%;
+
+	border: 1px solid #727E76;
+	border-radius: 1em;
+
+	padding: 1vh 1vw;
+	margin: 0 0 5vh	;
+
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+section#confirmation > section > div > section {
+	display: flex;
+	flex-direction: column;
+
+	margin: 2vh 0;
+
+	width: 100%;
+
+	font-size: 1.2em;
+}
+
+section#confirmation > section > div > section > div{
+	display: flex;
+	flex-direction: row;
+
+	justify-content: space-between;
+
+	margin: 2vh 0 0;
+}
+
+section#confirmation > section > div > section > div p{
+	color: #727E76;
+}
+
+section#confirmation > section > div > section > div:last-child {
+	margin: 2vh 0 0;
+
+	font-size: 1.5em;
+}
+
+section#confirmation > section > div > section > div:last-child p{
+	color: #2C1E1E;
+}
+
+section#confirmation > section > button {
+	padding: 0;
+	margin: 0 auto;
+	border: 0;
+
+	background-color: #21C2EE;
+	color: #F8F8F4;
+
+	width: max(80%, 10em);
+	height: 2em;
+
+	font-size: 1.5em;
+
+	border-radius: 0.8em;
+}
+
+
+/*----------------------------------------*/
+/*----------------------------------------*/
 /*----------------------------------------*/
 
 section#footers_infos {
 	display: flex;
-	flex: 30vw;
 }
 
 section#footers_infos article {

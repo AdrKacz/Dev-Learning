@@ -20,6 +20,10 @@ class Logement(models.Model):
 		default=0,
 		help_text="Entre la capacité maximum du logement")
 
+	prix = models.IntegerField(
+		default=0,
+		help_text="Prix de la nuit")
+
 	class Meta:
 		ordering = ['nom']
 

@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+{% block add_on %}
+	{% load static %}
+	<script type="text/javascript" src="{% static 'scripts/price_update_page_three.js' %}" defer></script>
+{% endblock add_on %}
+
+{% block content %}
+{# First Block (Last Check) #}
+	<div class="first">
+		<h1 class="left">Confirmez et payez</h1>
+		<section id="confirmation">
+			<form>
+				<h2>Dates</h2>
+				<div>
+					{{ form.start_date }}
+					{{ form.end_date }}
+				</div>
+
+				{% for item in form_options %}
+					<section>
+						{{ item.0}}	
+						{% if item.1.plusieurs %}
+
+							<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}">{{ item.0.label }}(s) (+ {{ item.1.prix }}€/{{ item.1.nom }})</label>
+
+						{% else %}
+
+							<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}">{{ item.0.label }} (+ {{ item.1.prix }}€)</label>
+
+						{% endif %}
+					</section>
+				{% endfor %}
+			</form>
+
+			<section>
+				<div>
+					<h2>Détails du prix</h2>
+					<!-- To be generated via JS -->
+					<section>
+						<div>
+							<p>??€ x ? Nuits</p>
+							<p>???€</p>
+						</div>
+
+						{% for item in form_options %}
+							<div>
+								<p>{{ item.1.prix }}€ x ?? {{ item.0.label }}</p>
+								<p>??€</p>
+							</div>
+						{% endfor %}
+
+						<div>
+							<p>Total</p>
+							<p>???€</p>
+						</div>
+
+					</section>
+				</div>
+
+				<button>Confirmez et payez</button>
+
+			</section>
+		</section>
+	</div>
+{% endblock content %}

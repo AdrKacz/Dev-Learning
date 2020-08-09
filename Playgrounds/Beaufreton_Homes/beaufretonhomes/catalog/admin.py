@@ -24,7 +24,7 @@ class LogementAdmin(admin.ModelAdmin):
 		- 	adds inline addition of Reservation instances in Logement view (inlines)
 	"""
 
-	list_display = ('nom', 'capacite')
+	list_display = ('nom', 'prix', 'capacite')
 	inlines = [ReservationsInline]
 
 

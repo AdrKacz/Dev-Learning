@@ -2,7 +2,7 @@
 
 {% block add_on %}
 	{% load static %}
-	<script type="text/javascript" src="{% static 'scripts/main_two.js' %}" defer></script>
+	<script type="text/javascript" src="{% static 'scripts/price_update_page_two.js' %}" defer></script>
 {% endblock add_on %}
 
 {% block content %}
@@ -53,16 +53,16 @@
 				</div>
 
 				<article>
-					{% for item in  form_option %}
+					{% for item in  form_options %}
 						<section>
 							{{ item.0}}	
 							{% if item.1.plusieurs %}
 
-								<label for="{{ item.0.id_for_label }}">{{ item.0.label }}(s) (+ {{ item.1.prix }}€/{{ item.1.nom }})</label>
+								<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}">{{ item.0.label }}(s) (+ {{ item.1.prix }}€/{{ item.1.nom }})</label>
 
 							{% else %}
 
-								<label for="{{ item.0.id_for_label }}">{{ item.0.label }} (+ {{ item.1.prix }}€)</label>
+								<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}">{{ item.0.label }} (+ {{ item.1.prix }}€)</label>
 
 							{% endif %}
 						</section>

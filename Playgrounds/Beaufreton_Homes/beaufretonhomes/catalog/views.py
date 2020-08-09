@@ -5,6 +5,10 @@ from django.urls import reverse
 # To handle forms
 from catalog.forms import PickDatesForm, PickDatesOptionsForm
 
+
+# To replace character in date
+import re
+
 # Create your views here.
 
 from .models import Logement, Reservation, Photographie, Caracteristique, Option
@@ -24,10 +28,11 @@ def index(request):
 	all_images = Photographie.objects.all().order_by('?')[:10]
 
 	# [DEBUG ONLY] Create more image from one
+	###
 	if all_images.count() < 10:
 		all_images = [image[0] for image in list(all_images.values_list('image'))] * 10
 		all_images = all_images[:10]
-
+	###
 	
 
 	# Get the "caracteristique"
@@ -50,7 +55,13 @@ def index(request):
 		# Check if the form is valid
 		if form.is_valid():
 			# Process the data in form.cleaned_data as required
-			return HttpResponseRedirect(reverse('home-details'))
+			start_date = form.cleaned_data['start_date']
+			end_date = form.cleaned_data['end_date']
+
+			start_date = re.sub("[-_/ ]", "", str(start_date))
+			end_date = re.sub("[-_/ ]", "", str(end_date))
+
+			return HttpResponseRedirect(reverse('home-details', args=[start_date, end_date]))
 
 	# If this is a GET (or any other method) create the default form
 	else:
@@ -65,7 +76,8 @@ def index(request):
 		context=context,
 		)
 
-def details(request):
+
+def details(request, start_date=None, end_date=None):
 	"""View function for second page of the site.
 	Home details and second date selection.
 	"""
@@ -74,48 +86,120 @@ def details(request):
 	home_images = Photographie.objects.exclude(logement__exact=None).order_by('?')[:5]
 
 	# [DEBUG]
+	###
 	if home_images.count() < 5:
 		home_images = [image[0] for image in list(home_images.values_list('image'))] * 5
 		home_images = home_images[:5]
+	###
 
+	# Variable init
 	context = {
 	'big_image': home_images[0],
 	'home_images': home_images[1:],
 	}
+
+	form = None
 
 	# If this is a POST request then process the Form data
 	if request.method == 'POST':
 		# Create a form instance and populate it with the data from the request (binding)
 		form = PickDatesOptionsForm(request.POST)
 
-		# Link the Options info with the Form result
-		form_option = list()
-		for field in form:
-			if field.help_text == "option":
-				form_option.append((field, Option.objects.get(pk=int(field.auto_id[3:]))))
+		# Check if the form is valid
+		if form.is_valid():
+			# Process the data in form.cleaned_data as required
+			start_date = form.cleaned_data['start_date']
+			end_date = form.cleaned_data['end_date']
 
-		context['form_option'] = form_option
-		context['form'] = form
+			start_date = re.sub("[-_/ ]", "", str(start_date))
+			end_date = re.sub("[-_/ ]", "", str(end_date))
+
+			return HttpResponseRedirect(reverse('booking', args=[start_date, end_date]))
 
 	# If this is a GET (or any other method), create the default form
 	else:
 		# Get the previous date enter by the user (if any)
-		# TO DO
+		initial = dict()
+		if start_date and end_date:
+			if len(start_date) == 8 and len(end_date) == 8:
+				initial['start_date'] = start_date[:4] + '-' + start_date[4:6] + '-' + start_date[6:]
+				initial['end_date'] = end_date[:4] + '-' + end_date[4:6] + '-' + end_date[6:]
 
-		form = PickDatesOptionsForm()
+			# Check if the received date are correct
+			form = PickDatesOptionsForm(initial)
+			for field in list(form.fields.keys()):
+				if field not in initial:
+					form.fields.pop(field)
 
-		# Link the Options info with the Form result
-		form_option = list()
-		for field in form:
-			if field.help_text == "option":
-				form_option.append((field, Option.objects.get(pk=int(field.auto_id[3:]))))
+			# If not, reset the initial
+			if not form.is_valid():
+				initial = dict()
 
-		context['form_option'] = form_option
-		context['form'] = form
+		form = PickDatesOptionsForm(initial=initial)
 
-	print('\n',context['form_option'], '\n')
+
+	# Link the Options info with the Form result
+	form_options = list()
+	for field in form:
+		if field.help_text == "option":
+			form_options.append((field, Option.objects.get(pk=int(field.auto_id[3:]))))
+
+	context['form_options'] = form_options
+	context['form'] = form
+
 	return render(
 		request,
 		'home-details.html',
+		context=context,
+		)
+
+
+def booking(request, start_date=None, end_date=None):
+	"""View function for third/last page of the site.
+	Bookind, option/date selection and redirect to a paiment link if possible.
+	"""
+	# Variable init
+	context = dict()
+	form = None
+
+	# If this is a POST request then process the Form data
+	if request.method == 'POST':
+		# Create a form instance and populate it with the data from the request (binding)
+		form = PickDatesOptionsForm(request.POST)
+
+
+	# If this is a GET (or any other method), create the default form
+	else:
+		# Get the previous date enter by the user (if any)
+		initial = dict()
+		if start_date and end_date:
+			if len(start_date) == 8 and len(end_date) == 8:
+				initial['start_date'] = start_date[:4] + '-' + start_date[4:6] + '-' + start_date[6:]
+				initial['end_date'] = end_date[:4] + '-' + end_date[4:6] + '-' + end_date[6:]
+
+			# Check if the received date are correct
+			form = PickDatesOptionsForm(initial)
+			for field in list(form.fields.keys()):
+				if field not in initial:
+					form.fields.pop(field)
+
+			# If not, reset the initial
+			if not form.is_valid():
+				initial = dict()
+
+		form = PickDatesOptionsForm(initial=initial)
+
+	# Link the Options info with the Form result
+	form_options = list()
+	for field in form:
+		if field.help_text == "option":
+			form_options.append((field, Option.objects.get(pk=int(field.auto_id[3:]))))
+
+	context['form_options'] = form_options
+	context['form'] = form
+
+	return render(
+		request,
+		'booking.html',
 		context=context,
 		)
