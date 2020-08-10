@@ -38,6 +38,12 @@ div.footers {
 	background-color: #2C1E1E;
 }
 
+.hidden {
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+
 p, button, input, h1, h2, label {
 	margin: 0;
 	font-family: 'Lora', serif;
@@ -65,19 +71,33 @@ div.up_side {
 	text-align: center;
 }
 
-div.up_side input {
-	border: 0;
-	padding: 0;
+div.up_side div.date-container {
 	margin: 0;
-
-	border-radius: 1em;
-	text-align: center;
+	padding: 0;
+	display: inline-block;
 
 	height: 5vh;
 	width: 25vw;
 
+	text-align: center;
+
+	background-color: white;
+	border-radius: 1em;
+
+	vertical-align: middle;
+}
+
+div.up_side div.date-container p {
+	border: 0;
+	padding: 0;
+	margin: 0;
+
 	font-size: 1em;
 	letter-spacing: 0.3em;
+
+	line-height: 5vh;
+
+	background-color: transparent;
 }
 
 div.up_side button, div.up_side button:hover {
@@ -348,7 +368,7 @@ section#info_logement > form > div section input {
 
 section#info_logement > form > div button {
 	padding: 0;
-	margin: 0 auto;
+	margin: 2vh auto 1vh;
 	border: 0;
 
 	background-color: #21C2EE;
@@ -491,7 +511,7 @@ section#confirmation > section > div {
 	justify-content: space-around;
 }
 
-section#confirmation > section > div > section {
+section#price_details {
 	display: flex;
 	flex-direction: column;
 
@@ -502,7 +522,7 @@ section#confirmation > section > div > section {
 	font-size: 1.2em;
 }
 
-section#confirmation > section > div > section > div{
+section#price_details div{
 	display: flex;
 	flex-direction: row;
 
@@ -511,17 +531,17 @@ section#confirmation > section > div > section > div{
 	margin: 2vh 0 0;
 }
 
-section#confirmation > section > div > section > div p{
+section#price_details p{
 	color: #727E76;
 }
 
-section#confirmation > section > div > section > div:last-child {
+section#price_details > div:last-child {
 	margin: 2vh 0 0;
 
 	font-size: 1.5em;
 }
 
-section#confirmation > section > div > section > div:last-child p{
+section#price_details > div:last-child p{
 	color: #2C1E1E;
 }
 
@@ -559,3 +579,7 @@ section#footers_infos article {
 section#footers_infos p {
 	color: #F8F8F4;
 }
+
+/*----------------------------------------*/
+/*----------------------------------------*/
+/*----------------------------------------*/

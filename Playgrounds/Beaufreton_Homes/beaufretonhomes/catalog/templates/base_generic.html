@@ -13,6 +13,17 @@
 
 	{# Font family #}
 	<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
+	{# Date picker JS and CSS (two in each page) #}
+	{% load static %}
+	<script type="text/javascript" src="{% static 'scripts/datepickers/datepicker.js' %}"></script>
+
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/datepicker.css' %}">
+
+	{# Custom Date Picker #}
+	{% load static %}
+	<script type="text/javascript" src="{% static 'scripts/datepickers/datepicker_display.js' %}" defer></script>
 	
 	{# Add additional CSS in static file #}
 	{% load static %}

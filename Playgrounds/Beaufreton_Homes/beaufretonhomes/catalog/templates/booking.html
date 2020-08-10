@@ -14,7 +14,9 @@
 				<h2>Dates</h2>
 				<div>
 					{{ form.start_date }}
+					<div class="date-container"><p>{{ form.start_date.help_text }}</p></div>
 					{{ form.end_date }}
+					<div class="date-container"><p>{{ form.end_date.help_text }}</p></div>
 				</div>
 
 				{% for item in form_options %}
@@ -22,11 +24,11 @@
 						{{ item.0}}	
 						{% if item.1.plusieurs %}
 
-							<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}">{{ item.0.label }}(s) (+ {{ item.1.prix }}€/{{ item.1.nom }})</label>
+							<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}" name="{{ item.1.nom }}">{{ item.0.label }}(s) (+ {{ item.1.prix }}€/{{ item.1.nom }})</label>
 
 						{% else %}
 
-							<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}">{{ item.0.label }} (+ {{ item.1.prix }}€)</label>
+							<label for="{{ item.0.id_for_label }}" price="{{ item.1.prix }}" name="{{ item.1.nom }}">{{ item.0.label }} (+ {{ item.1.prix }}€)</label>
 
 						{% endif %}
 					</section>
@@ -37,22 +39,18 @@
 				<div>
 					<h2>Détails du prix</h2>
 					<!-- To be generated via JS -->
-					<section>
+					<section id="price_details">
 						<div>
 							<p>??€ x ? Nuits</p>
 							<p>???€</p>
 						</div>
 
-						{% for item in form_options %}
-							<div>
-								<p>{{ item.1.prix }}€ x ?? {{ item.0.label }}</p>
-								<p>??€</p>
-							</div>
-						{% endfor %}
+						<section>
+						</section>
 
 						<div>
 							<p>Total</p>
-							<p>???€</p>
+							<p id="price_total">???€</p>
 						</div>
 
 					</section>

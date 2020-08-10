@@ -47,7 +47,9 @@
 					<h2 id="prix">Prix: ???€</h2>
 					<section>
 						{{ form.start_date }}
+						<div class="date-container"><p>{{ form.start_date.help_text }}</p></div>
 						{{ form.end_date }}
+						<div class="date-container"><p>{{ form.end_date.help_text }}</p></div>
 					</section>
 					<button type="submit">Vérifiez la disponibilité</button>
 				</div>

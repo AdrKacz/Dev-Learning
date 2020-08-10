@@ -10,7 +10,7 @@ function getDateDifferenceInDays(start_date, end_date) {
  	const utc_end = Date.UTC(end_date.getFullYear(), end_date.getMonth(), end_date.getDate());
 
  	return Math.floor((utc_end - utc_start) / _MS_PER_DAY);
-}
+};
 
 
 function updatePrice() {
@@ -26,25 +26,29 @@ function updatePrice() {
 		if (element.id) {
 			
 			if (element.type === "checkbox") {
-				// Is a checkbox
+				// Is a checked checkbox
 				if (element.checked) {
+					// Add the price value
 					price_value += parseInt(document.querySelector("label[for="+element.id).getAttribute('price'));
-				}
+				};
 			}
 			else if (element.type === "number") {
 				// Is a number
+				// Add the price value times the number of elements
 				price_value += parseInt(element.value) * parseInt(document.querySelector("label[for="+element.id).getAttribute('price'));
 			} else {
+				// Else is a date
 				// Is a date (text format --> SANATIZE INPUT, NOT DONE HERE)
 				// Sanetize should occur here on element.value
 				if (element.id === "id_start_date") {
 					start_date = new Date(element.value)
+					// Get the price of one day
 					day_price = element.getAttribute('price')
 				}
 				else if (element.id === "id_end_date") {
 					end_date = new Date(element.value)
-				}
-			}
+				};
+			};
 		};
 	};
 
@@ -52,12 +56,13 @@ function updatePrice() {
 	if (start_date.valueOf() && end_date.valueOf()) {
 		const differenceInDays = getDateDifferenceInDays(start_date, end_date)
 		price_value += differenceInDays * day_price;
-	}
+	};
 
+	// Update the price displayed
 	price.textContent = "Prix: " + price_value + "€";
-}
+};
 
-
+// Add the event listener
 for (let i = form.elements.length - 1; i >= 0; i--) {
 	if (form.elements[i].id) {
 		form.elements[i].addEventListener('change', updatePrice);

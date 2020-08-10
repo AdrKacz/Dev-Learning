@@ -54,14 +54,11 @@ def index(request):
 
 		# Check if the form is valid
 		if form.is_valid():
-			# Process the data in form.cleaned_data as required
-			start_date = form.cleaned_data['start_date']
-			end_date = form.cleaned_data['end_date']
+			# Stock the data in the session for the next pages
+			request.session['start_date'] = str(form.cleaned_data['start_date'])
+			request.session['end_date'] = str(form.cleaned_data['end_date'])
 
-			start_date = re.sub("[-_/ ]", "", str(start_date))
-			end_date = re.sub("[-_/ ]", "", str(end_date))
-
-			return HttpResponseRedirect(reverse('home-details', args=[start_date, end_date]))
+			return HttpResponseRedirect(reverse('home-details'))
 
 	# If this is a GET (or any other method) create the default form
 	else:
@@ -77,7 +74,7 @@ def index(request):
 		)
 
 
-def details(request, start_date=None, end_date=None):
+def details(request):
 	"""View function for second page of the site.
 	Home details and second date selection.
 	"""
@@ -107,24 +104,31 @@ def details(request, start_date=None, end_date=None):
 
 		# Check if the form is valid
 		if form.is_valid():
-			# Process the data in form.cleaned_data as required
-			start_date = form.cleaned_data['start_date']
-			end_date = form.cleaned_data['end_date']
+			# Stock the data in the session for the next pages
+			request.session['start_date'] = str(form.cleaned_data['start_date'])
+			request.session['end_date'] = str(form.cleaned_data['end_date'])
 
-			start_date = re.sub("[-_/ ]", "", str(start_date))
-			end_date = re.sub("[-_/ ]", "", str(end_date))
+			options = dict()
+			for field in form.cleaned_data:
+				if not field in ('start_date', 'end_date'):
+					options[field] = form.cleaned_data[field]
 
-			return HttpResponseRedirect(reverse('booking', args=[start_date, end_date]))
+			request.session['options'] = options
+
+			return HttpResponseRedirect(reverse('booking'))
 
 	# If this is a GET (or any other method), create the default form
 	else:
 		# Get the previous date enter by the user (if any)
+		start_date = request.session.get("start_date", None)
+		end_date = request.session.get("end_date", None)
+
+		# Check the data and add it to the form if they are correct
 		initial = dict()
 		if start_date and end_date:
-			if len(start_date) == 8 and len(end_date) == 8:
-				initial['start_date'] = start_date[:4] + '-' + start_date[4:6] + '-' + start_date[6:]
-				initial['end_date'] = end_date[:4] + '-' + end_date[4:6] + '-' + end_date[6:]
-
+			# Field the initials
+			initial["start_date"] = start_date
+			initial["end_date"] = end_date
 			# Check if the received date are correct
 			form = PickDatesOptionsForm(initial)
 			for field in list(form.fields.keys()):
@@ -154,7 +158,7 @@ def details(request, start_date=None, end_date=None):
 		)
 
 
-def booking(request, start_date=None, end_date=None):
+def booking(request):
 	"""View function for third/last page of the site.
 	Bookind, option/date selection and redirect to a paiment link if possible.
 	"""
@@ -171,12 +175,18 @@ def booking(request, start_date=None, end_date=None):
 	# If this is a GET (or any other method), create the default form
 	else:
 		# Get the previous date enter by the user (if any)
-		initial = dict()
-		if start_date and end_date:
-			if len(start_date) == 8 and len(end_date) == 8:
-				initial['start_date'] = start_date[:4] + '-' + start_date[4:6] + '-' + start_date[6:]
-				initial['end_date'] = end_date[:4] + '-' + end_date[4:6] + '-' + end_date[6:]
+		start_date = request.session.get("start_date", None)
+		end_date = request.session.get("end_date", None)
+		options = request.session.get("options", None)
 
+		# Check the data and add it to the form if they are correct
+		initial = dict()
+		if start_date and end_date and options:
+			# Field the initials
+			initial["start_date"] = start_date
+			initial["end_date"] = end_date
+			for option in options:
+				initial[option] = options[option]
 			# Check if the received date are correct
 			form = PickDatesOptionsForm(initial)
 			for field in list(form.fields.keys()):

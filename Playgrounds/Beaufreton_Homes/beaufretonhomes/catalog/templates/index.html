@@ -9,6 +9,7 @@
 				{% csrf_token %}
 				{% for field in form %}
 					{{ field }}
+					<div class="date-container"><p class="hidden"></p><p>{{ field.help_text }}</p></div>
 				{% endfor %}
 				<!-- Make the input button with the Glass -->
 				<button type="submit"><i class="fas fa-search"></i></button>		

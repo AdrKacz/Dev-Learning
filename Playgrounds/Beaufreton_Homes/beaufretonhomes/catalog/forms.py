@@ -13,16 +13,16 @@ from .models import Reservation, Option, Logement
 
 class PickDatesForm(forms.Form):
 	start_date = forms.DateField(
-		help_text="Date d'arrivée",
+		help_text="Arrivée",
 		required=True,
-		widget=forms.TextInput(attrs={
+		widget=forms.HiddenInput(attrs={
 			"value": "Arrivée",
 			"price": Logement.objects.only("prix")[0].prix}))
 
 	end_date = forms.DateField(
-		help_text="Date de départ",
+		help_text="Départ",
 		required=True,
-		widget=forms.TextInput(attrs={
+		widget=forms.HiddenInput(attrs={
 			"value": "Départ"}))
 
 	def clean_start_date(self):
