@@ -71,7 +71,7 @@ div.up_side {
 	text-align: center;
 }
 
-div.up_side div.date-container {
+div.up_side div#date-container {
 	margin: 0;
 	padding: 0;
 	display: inline-block;
@@ -87,7 +87,7 @@ div.up_side div.date-container {
 	vertical-align: middle;
 }
 
-div.up_side div.date-container p {
+div.up_side div#date-container p {
 	border: 0;
 	padding: 0;
 	margin: 0;

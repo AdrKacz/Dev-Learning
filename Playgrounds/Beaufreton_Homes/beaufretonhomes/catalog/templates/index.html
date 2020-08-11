@@ -7,10 +7,13 @@
 		<div class="up_side">
 			<form action="" method="post">
 				{% csrf_token %}
-				{% for field in form %}
-					{{ field }}
-					<div class="date-container"><p class="hidden"></p><p>{{ field.help_text }}</p></div>
-				{% endfor %}
+				<div id="date-container">
+					{% for field in form %}
+						{{ field }}
+					{% endfor %}
+				
+					<p><span>{{form.start_date.help_text}}</span> - <span>{{ form.end_date.help_text}}</span></p>
+				</div>
 				<!-- Make the input button with the Glass -->
 				<button type="submit"><i class="fas fa-search"></i></button>		
 			</form>

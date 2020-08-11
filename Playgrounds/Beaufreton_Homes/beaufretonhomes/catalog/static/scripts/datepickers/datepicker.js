@@ -1,3 +1,8 @@
+// UPDATE FOR CUSTOMISATION
+let handle_date_selection = function() {};
+// ------------------------
+
+
 var _this = this;
 /* ======== Time Constants ======== */
 /* exported SECOND MINUTE HOUR DAY WEEK WEEKDAYS WEEKDAYS_SHORT MONTHS MONTHS_SHORT*/
@@ -200,7 +205,6 @@ var Datepicker = /* @class */ (function () {
                             : true)) {
                         td.onclick = function () {
                             _this.setDate(day);
-                            _this.show(false);
                         };
                     }
                     else
@@ -429,6 +433,9 @@ var Datepicker = /* @class */ (function () {
         this.date = date;
         this.host.value = this.format(date);
         this.host.dispatchEvent(new Event("change"));
+
+        // CUSTOMISATION, see in datepicker_display.js
+        handle_date_selection();
     };
     return Datepicker;
 }());
