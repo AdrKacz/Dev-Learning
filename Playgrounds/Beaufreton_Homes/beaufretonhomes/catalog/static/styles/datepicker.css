@@ -1,62 +1,100 @@
 .datepicker {
-  position: absolute;
-  /* -webkit-touch-callout: none; */
-  /* -webkit-user-select: none; */
-  /* -khtml-user-select: none; */
-  /* -moz-user-select: none; */
-  /* -ms-user-select: none; */
-  user-select: none;
+	box-sizing: border-box;
+	position: fixed;
 
-  width: 250px;
-  height: 250px;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 0 16px -8px black;
-  border: 2px solid dodgerblue;
-  color: #404040;
-  font: 16px Tahoma;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* 96 = 8 * 12 */
+	/* 84 = 7 * 12 */
+	height: min(96vh, 96vw); 
+	width: min(84vh, 84vw);
+
+	top: calc(50vh - min(48vh, 48vw));
+	left: calc(50vw - min(42vh, 42vw));
+
+	margin: 0;
+	padding: 0;
+	border: 0;
+
+	border-radius: 5em;
+
+	background-color: #F8F8F4;
+	color: #2C1E1E;
+	border: 3px solid #2C1E1E;
+
+	font-family: 'Lora', serif;
+	text-align: center;
+}
+
+.datepicker * {
+	border: 0;
+	margin: 0;
+	padding: 0;
 }
 
 /* ========= Head ======== */
 .datepicker .head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 32px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: min(10vh, 10vw);
+	width: 80%;
+
+	margin: 0 auto;
 }
 
 .datepicker .head span {
-  margin: 2px;
-  padding: 4px 8px;
 }
 
 .datepicker .head span:not(.disabled) {
-  cursor: pointer;
+	cursor: pointer;
+}
+
+.datepicker .days {
+	margin: 5vh 0;
 }
 
 /* ======== Table ========= */
 .datepicker table {
-  width: 100%;
-  height: calc(100% - 32px);
+	width: min(84vh, 84vw);
+	height: min(84, 84vw);
+
+}
+
+.datepicker table td,  .datepicker table th {
+	height: min(10vh, 10vw);
+	width: min(10vh, 10vw);
+
+	border-radius: 1em;
+
 }
 
 .datepicker td:not(.disabled) {
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.1s, color 0.1s;
+	cursor: pointer;
 }
 
 /* ======== Colors i guess ======== */
 .datepicker .disabled {
-  color: lightgray;
+	color: #727E76;
 }
 
 .datepicker .today {
-  color: dodgerblue;
 }
 
 .datepicker td:not(.disabled):hover {
-  background-color: dodgerblue;
-  color: white;
-  transition: background-color 0.1s, color 0.1s;
+	background-color: #2C1E1E;
+	color: #F8F8F4;
+}
+
+.datepicker td.selected {
+	box-sizing: border-box;
+	background-color: #F8F8F4;
+	color: #2C1E1E;
+
+	border: 2px solid #2C1E1E;
 }

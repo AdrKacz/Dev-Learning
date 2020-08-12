@@ -131,14 +131,14 @@ var Datepicker = /* @class */ (function () {
         // Prev
         var prev = document.createElement("span");
         head.append(prev);
-        prev.innerHTML = "<<";
+        prev.innerHTML = "<";
         // Center
         var center = document.createElement("span");
         head.append(center);
         // Next
         var next = document.createElement("span");
         head.append(next);
-        next.innerHTML = ">>";
+        next.innerHTML = ">";
         // Table
         var table = document.createElement("table");
         this.frame.append(table);
@@ -204,6 +204,7 @@ var Datepicker = /* @class */ (function () {
                             ? day.getTime() >= _this.first_date.getTime()
                             : true)) {
                         td.onclick = function () {
+                            this.setAttribute("class", "selected");
                             _this.setDate(day);
                         };
                     }
@@ -358,10 +359,10 @@ var Datepicker = /* @class */ (function () {
             var host_rect = this.host.getBoundingClientRect();
             this.host.insertAdjacentElement("afterend", this.frame);
             var frame_rect = this.frame.getBoundingClientRect();
-            var x = host_rect.x + (host_rect.width - frame_rect.width) / 2;
-            var y = host_rect.y + host_rect.height + 16;
-            this.frame.style.setProperty("top", y + "px");
-            this.frame.style.setProperty("left", x + "px");
+            // var x = host_rect.x + (host_rect.width - frame_rect.width) / 2;
+            // var y = host_rect.y + host_rect.height + 16;
+            // this.frame.style.setProperty("top", y + "px");
+            // this.frame.style.setProperty("left", x + "px");
         }
         else
             this.frame.remove();

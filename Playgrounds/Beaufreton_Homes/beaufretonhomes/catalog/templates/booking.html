@@ -13,10 +13,12 @@
 			<form>
 				<h2>Dates</h2>
 				<div>
-					{{ form.start_date }}
-					<div class="date-container"><p>{{ form.start_date.help_text }}</p></div>
-					{{ form.end_date }}
-					<div class="date-container"><p>{{ form.end_date.help_text }}</p></div>
+					<div id="date-container">
+						{{ form.start_date }}
+						{{ form.end_date }}
+				
+						<p><span>{{form.start_date.help_text}}</span> - <span>{{ form.end_date.help_text}}</span></p>
+					</div>
 				</div>
 
 				{% for item in form_options %}
