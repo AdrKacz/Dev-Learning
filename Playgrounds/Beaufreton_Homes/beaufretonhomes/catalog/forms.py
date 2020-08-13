@@ -16,14 +16,12 @@ class PickDatesForm(forms.Form):
 		help_text="Arrivée",
 		required=True,
 		widget=forms.HiddenInput(attrs={
-			"value": "Arrivée",
 			"price": Logement.objects.only("prix")[0].prix}))
 
 	end_date = forms.DateField(
 		help_text="Départ",
 		required=True,
-		widget=forms.HiddenInput(attrs={
-			"value": "Départ"}))
+		widget=forms.HiddenInput(attrs={}))
 
 	def clean_start_date(self):
 		print("Clean Process Start Date")

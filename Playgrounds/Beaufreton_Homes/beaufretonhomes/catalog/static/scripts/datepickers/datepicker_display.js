@@ -1,11 +1,12 @@
 // Selectors
-const dates = document.querySelector("div#date-container");
-const inputs = document.querySelectorAll("div#date-container input");
-const spans = document.querySelectorAll("div#date-container span");
+const dates = document.querySelector("div.date-container");
+const inputs = document.querySelectorAll("div.date-container input");
+const spans = document.querySelectorAll("div.date-container span");
 // Create the DatePicker
 const datepicker = new Datepicker(dates);
 
-
+// Event to dispatch for the inputs
+const change_event = new Event("change");
 
 // Date object for Today
 const today = new Date();
@@ -30,8 +31,12 @@ function update_inputs() {
 				dates_list[i].getFullYear(),
 				month_number.substring(month_number.length - 2),
 				date_number.substring(date_number.length - 2),
-				].join('-');
+				].join('-');		
 		};
+	};
+
+	if (dates_list[0] && dates_list[1]) {
+		inputs[0].dispatchEvent(change_event);
 	};
 };
 
@@ -124,3 +129,9 @@ datepicker.config({
     format: format_date,
     first_day_of_week: "Monday",
 });
+
+// Set the text to the date value if any
+if (inputs[0].value.length > 0 && inputs[1].value.length) {
+	datepicker.setDate(new Date(inputs[0].value));
+	datepicker.setDate(new Date(inputs[1].value));
+};

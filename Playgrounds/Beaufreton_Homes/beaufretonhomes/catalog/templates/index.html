@@ -7,7 +7,7 @@
 		<div class="up_side">
 			<form action="" method="post">
 				{% csrf_token %}
-				<div id="date-container">
+				<div class="date-container">
 					{% for field in form %}
 						{{ field }}
 					{% endfor %}
@@ -21,7 +21,7 @@
 		<div class="left_side">
 			<p>Un bol d'air frais !</p>
 
-			<p><a href="#third" class="button">Découvrir</a></p>
+			<p><a href="#third-page" class="button">Découvrir</a></p>
 		</div>
 	</div>
 
@@ -40,7 +40,7 @@
 	</div>
 
 {# Thirs Block (Galery) #}
-	<div class="third">
+	<div class="third" id="third-page">
 		<h1>Galerie Photo</h1>
 		<section id="photos">
 		{% for image in all_images %}

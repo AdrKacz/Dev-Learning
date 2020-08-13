@@ -14,6 +14,7 @@ function getDateDifferenceInDays(start_date, end_date) {
 
 
 function updatePrice() {
+	console.log("Update");
 	let price_value = 0;
 
 	let start_date;

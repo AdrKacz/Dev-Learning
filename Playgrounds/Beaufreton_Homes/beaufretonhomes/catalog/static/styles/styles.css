@@ -71,7 +71,7 @@ div.up_side {
 	text-align: center;
 }
 
-div.up_side div#date-container {
+div.up_side div.date-container {
 	margin: 0;
 	padding: 0;
 	display: inline-block;
@@ -87,7 +87,7 @@ div.up_side div#date-container {
 	vertical-align: middle;
 }
 
-div.up_side div#date-container p {
+div.up_side div.date-container p {
 	border: 0;
 	padding: 0;
 	margin: 0;
@@ -222,34 +222,38 @@ h1.left {
 	font-size: 3em;
 }
 
-section#photos_logement {
+div#photos_logement {
 	display: flex;
 	flex-wrap: wrap;
 
 	height: 80vh;
-	width: 80vw;
 
-	margin: auto;
+	margin: 0 auto;
 
 	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
 }
 
-section#photos_logement > * {
+div#photos_logement > * {
 	box-sizing: border-box;
-	height: max(min(80vh, 40vw), min(40vh, 80vw));
-	width: max(min(80vh, 40vw), min(40vh, 80vw));
+/*	height: max(min(80vh, 40vw), min(40vh, 80vw));
+	width: max(min(80vh, 40vw), min(40vh, 80vw));*/
+	height: 80vh;
+	width: 80vh;
 	object-fit: cover;
-
-	padding: max(2vh, 2vw);
 }
 
-section#photos_logement section {
+div#photos_logement > img {
+	border-radius: 1em 0 0 1em;
+	padding: 0 0.4em 0 0;
+}
+
+div#photos_logement section {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
 
-section#photos_logement section > img {
+div#photos_logement section > img {
 	box-sizing: border-box;
 	height: 100%;
 	width: 100%;
@@ -258,27 +262,29 @@ section#photos_logement section > img {
 	padding: 0;
 }
 
-section#photos_logement section > img:nth-of-type(1) {
+div#photos_logement section > img:nth-of-type(1) {
 	padding: 0 0.2em 0.2em 0;
 }
 
-section#photos_logement section > img:nth-of-type(2) {
+div#photos_logement section > img:nth-of-type(2) {
 	padding: 0 0 0.2em 0.2em;
+	border-radius: 0 1em 0 0;
 }
 
-section#photos_logement section > img:nth-of-type(3) {
+div#photos_logement section > img:nth-of-type(3) {
 	padding: 0.2em 0.2em 0 0;
 }
 
-section#photos_logement section > img:nth-of-type(4) {
+div#photos_logement section > img:nth-of-type(4) {
 	padding: 0.2em 0 0 0.2em;
+	border-radius: 0 0 1em 0;
 }
 
 section#info_logement {
 	display: flex;
 
 	height: 100%;
-	width: 98%;
+	width: 95%;
 }
 
 section#info_logement > section {
@@ -314,7 +320,7 @@ section#info_logement > form {
 
 	flex: 40%;
 
-	align-items: center;
+/*	align-items: center;*/
 
 	padding: 1vh 1vw;
 
@@ -323,63 +329,73 @@ section#info_logement > form {
 
 section#info_logement > form > div {
 	box-sizing: border-box;
-	width: 100%;
+	width: 35vw;
 
 	border: 2px solid #2C1E1E;
 	border-radius: 1em;
 
-	padding: 1vh 1vw;
+	padding: 1vh 0vw;
 	margin: 0;
 
 	display:flex;
 	flex-direction: column;
 	justify-content: space-around;
+
+	position: fixed;
+	top: calc(100vh - 5em);
+
+	background-color: #F8F8F4;
 }
 
 section#info_logement > form > div h2 {
 	font-size: 3em;
+	padding: 0 0 0.5em 5%;
 }
 
-section#info_logement > form > div section {
-	margin: 0 auto;
 
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	width: 100%;
-}
-
-section#info_logement > form > div section input {
+section#info_logement div.date-container {
+	box-sizing: border-box;
+	margin: 0 5% 0.5em;
 	padding: 0;
-	margin: 1vh 0;
-	border: 1px solid #2C1E1E;
-	border-radius: 0.5em;
 
-	background-color: transparent;
+	border-radius: 0.8em;
+	border: 1px solid #727E76;
+	background-color: #F8F8F4;
+	color: #2C1E1E;
 
-	font-size: 1.5em;
-	letter-spacing: 0.3em;
+	width: 90%;
+	/*height: 2em;*/
 
 	text-align: center;
+}
 
-	height: 1.3em;
-	width: 10em;
+section#info_logement div.date-container p {
+	border: 0;
+	padding: 0;
+	margin: 0;
+
+	font-size: 1em;
+	letter-spacing: 0.3em;
+
+	line-height: 2em;
+
+	background-color: transparent;
 }
 
 section#info_logement > form > div button {
 	padding: 0;
-	margin: 2vh auto 1vh;
+	margin: 2vh 5% 1vh ;
 	border: 0;
 
 	background-color: #21C2EE;
 	color: #F8F8F4;
 
-	width: 100%;
+	width: 90%;
 	height: 2em;
 
 	font-size: 1.5em;
 
-	border-radius: 0.8em;
+	border-radius: 0.5em;
 }
 
 section#info_logement > form > article {
@@ -438,28 +454,18 @@ section#confirmation > form h2 {
 	font-size: 2em;
 }
 
-section#confirmation > form > div {
-	margin: 2vh auto 4vh;
+section#confirmation div.date-container {
+	padding: 0;
+	border: 0;
+	background-color: transparent;
 
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
+	margin: 2vh 0 5vh;
 }
 
-section#confirmation > form > div > input {
-	padding: 0;
-	margin: 1vh 1vw 1vh 0;
-	border: 0;
-
+section#confirmation div.date-container p{
 	font-size: 1.5em;
-	letter-spacing: 0.3em;
-	background-color: transparent;
+	letter-spacing: 0.2em;
 	color: #727E76;
-
-	text-align: left;
-
-	height: 1.3em;
-	width: 10em;
 }
 
 section#confirmation > form > section {
@@ -583,3 +589,17 @@ section#footers_infos p {
 /*----------------------------------------*/
 /*----------------------------------------*/
 /*----------------------------------------*/
+
+
+div#div-for-em {
+	height: 0;
+	width: 0;
+	outline: 0;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	box-sizing: content-box;
+
+	position: fixed;
+	top: -100vh;
+}

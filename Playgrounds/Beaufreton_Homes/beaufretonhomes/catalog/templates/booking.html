@@ -8,17 +8,15 @@
 {% block content %}
 {# First Block (Last Check) #}
 	<div class="first">
-		<h1 class="left">Confirmez et payez</h1>
+		<h1 class="left">Confirmer et payer</h1>
 		<section id="confirmation">
 			<form>
 				<h2>Dates</h2>
-				<div>
-					<div id="date-container">
-						{{ form.start_date }}
-						{{ form.end_date }}
+				<div class="date-container">
+					{{ form.start_date }}
+					{{ form.end_date }}
 				
-						<p><span>{{form.start_date.help_text}}</span> - <span>{{ form.end_date.help_text}}</span></p>
-					</div>
+					<p><span>{{form.start_date.help_text}}</span> - <span>{{ form.end_date.help_text}}</span></p>
 				</div>
 
 				{% for item in form_options %}
@@ -58,7 +56,7 @@
 					</section>
 				</div>
 
-				<button>Confirmez et payez</button>
+				<button>Confirmer et payer</button>
 
 			</section>
 		</section>

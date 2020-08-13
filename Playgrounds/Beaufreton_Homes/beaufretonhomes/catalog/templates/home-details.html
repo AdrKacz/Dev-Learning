@@ -3,13 +3,16 @@
 {% block add_on %}
 	{% load static %}
 	<script type="text/javascript" src="{% static 'scripts/price_update_page_two.js' %}" defer></script>
+
+	{% load static %}
+	<script type="text/javascript" src="{% static 'scripts/confirm_scroll.js' %}" defer></script>
 {% endblock add_on %}
 
 {% block content %}
 {# Fist Block (Home Presentation) #}
 	<div class="first">
 		<h1 class="left"> Gîte Les Pieds Dans L'Herbe</h1>
-		<section id="photos_logement">
+		<div id="photos_logement">
 			<img src="/media/{{ big_image }}">
 
 			<section>
@@ -18,7 +21,7 @@
 				{% endfor %}
 			</section>
 			
-		</section>
+		</div>
 	</div>
 
 {# Second Block (Option and Dates Check) #}
@@ -45,15 +48,13 @@
 				{% csrf_token %}
 				<div>
 					<h2 id="prix">Prix: ???€</h2>
-					<section>
-						<div id="date-container">
+					<div class="date-container">
 						{{ form.start_date }}
 						{{ form.end_date }}
 				
 						<p><span>{{form.start_date.help_text}}</span> - <span>{{ form.end_date.help_text}}</span></p>
-						</div>
-					</section>
-					<button type="submit">Vérifiez la disponibilité</button>
+					</div>
+					<button type="submit">Vérifier la disponibilité</button>
 				</div>
 
 				<article>
@@ -76,4 +77,6 @@
 	</div>
 		
 	</section>
+
+	<div id="div-for-em"></div>
 {% endblock content %}
