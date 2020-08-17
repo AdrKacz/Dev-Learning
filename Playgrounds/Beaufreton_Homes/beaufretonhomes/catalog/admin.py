@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Logement, Reservation, Photographie, Caracteristique, Option
+from .models import Logement, Reservation, Photographie, Caracteristique, Option, Calendrier
 
 
 """ Minimal registrations of Model exemple
@@ -73,7 +73,7 @@ class CaracteristiqueAdmin(admin.ModelAdmin):
 
 @admin.register(Option)
 class OptionAdmin(admin.ModelAdmin):
-	"""Administration object for Caracteristique models.
+	"""Administration object for Option models.
 	Defines:
 		- 	fields to be displayed in list view (list_display)
 		-	filters that will be displayed in sidebar (list_filter)
@@ -81,3 +81,13 @@ class OptionAdmin(admin.ModelAdmin):
 
 	list_display = ('nom', 'prix', 'plusieurs')
 	list_filter = ('prix', 'plusieurs')
+
+
+@admin.register(Calendrier)
+class CalendrierAdmin(admin.ModelAdmin):
+	"""Administration object for Calendrier models.
+	Defines:
+		-	fields to be displayed in list view (list_display)
+	"""
+
+	list_display = ("nom", "url")

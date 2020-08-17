@@ -8,7 +8,13 @@ import datetime
 # Import Option to count them before creating the Form
 # Import Reservations to check if the reservation is available
 
-from .models import Reservation, Option, Logement
+from .models import Reservation, Option, Logement, Calendrier
+
+# Function to handle calendar import
+from .calendar_handling import read_calendar
+
+# To request the calendar from outside
+from urllib.request import urlopen
 
 
 class PickDatesForm(forms.Form):
@@ -24,7 +30,6 @@ class PickDatesForm(forms.Form):
 		widget=forms.HiddenInput(attrs={}))
 
 	def clean_start_date(self):
-		print("Clean Process Start Date")
 		data = self.cleaned_data['start_date']
 
 		# Check if the date is not in the past
@@ -34,7 +39,6 @@ class PickDatesForm(forms.Form):
 		return data
 
 	def clean_end_date(self):
-		print("Clean Process End Date")
 		data = self.cleaned_data['end_date']
 
 		# Check if the date is not in the past
@@ -44,14 +48,26 @@ class PickDatesForm(forms.Form):
 		return data
 
 	def clean(self):
-		print("Clean Process BOTH")
+		# Get the cleaned date
 		cleaned_data = super().clean()
 		data_start = cleaned_data.get("start_date")
 		data_end = cleaned_data.get("end_date")
 
+		# Basic check
 		if data_start and data_end:
 			if data_end <= data_start:
 				raise ValidationError(_('Invalid date - end date before start date'))
+
+		# Get the calendar from outside (Airbnb)
+		if Calendrier.objects.all().count() > 0:
+			try:
+				url = Calendrier.objects.only('url')[0].url
+				html = urlopen(url).read().decode()
+				read_calendar(html)
+			except:
+				# Access Forbidden
+				print("Access to Calendar FORBIDDEN")
+
 
 		return cleaned_data
 		

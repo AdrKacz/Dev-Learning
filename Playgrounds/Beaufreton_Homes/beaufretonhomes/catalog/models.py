@@ -129,3 +129,18 @@ class Option(models.Model):
 
 	def __str__(self):
 		return f"{self.nom}"
+
+
+class Calendrier(models.Model):
+	"""Model representing outside calendar (e.g. Airbnb)
+	Only ONE can be handled for the moment
+	"""
+
+	nom = models.CharField(
+		max_length=20,
+		help_text="Nom du Calendrier extérieur (AirBnb, Booking, etc.)")
+
+	url = models.URLField(help_text="URL d'Export du calendrier")
+
+	def __str__(self):
+		return f"{self.nom}"
