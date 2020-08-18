@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 
 # To handle forms
@@ -213,3 +213,16 @@ def booking(request):
 		'booking.html',
 		context=context,
 		)
+
+
+def reservation_dates(request):
+	"""View function that return JSON file,
+	With the dates of the reserved days.
+	"""
+
+	# Create the dictionary with dates
+	dates = dict()
+	for date in Reservation.objects.only("debut", "fin", "uid").iterator():
+		dates[date.uid] = {"start":date.debut, "end":date.fin}
+
+	return JsonResponse(dates)

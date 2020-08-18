@@ -4,7 +4,7 @@ from django.db import models
 
 from django.urls import reverse # To generate ULRs by reversing URL patterns
 
-import uuid # Required for unique book instances
+import uuid # Required for unique reservation instances
 
 from datetime import date
 
@@ -37,9 +37,9 @@ class Logement(models.Model):
 class Reservation(models.Model):
 	"""Model representing one transaction i.e. "reservation" """
 
-	logement = models.ForeignKey(
-		'Logement',
-		on_delete=models.CASCADE,
+	source = models.ForeignKey(
+		'Calendrier',
+		on_delete=models.SET_NULL,
 		null=True,
 		blank=True)
 
@@ -51,11 +51,22 @@ class Reservation(models.Model):
 		null=True,
 		blank=True)
 
+	description = models.TextField(
+		null=True,
+		blank=True,
+		help_text="Texte descriptif (e.g. Nom, mail, lien url vers la page de la reservation, etc.)")
+
+	# Not primary key for simplicity, serve just as comparaison
+	uid = models.CharField(
+		max_length=100,
+		default=uuid.uuid4,
+		help_text='Unique identifiant pour cette reservation, ne pas changer')
+
 	class Meta:
 		ordering = ['debut', 'fin']
 
 	def __str__(self):
-		return f'{self.logement.nom} ({self.debut} - {self.fin})'
+		return f'{self.debut} - {self.fin}'
 
 class Photographie(models.Model):
 	"""Model representing one photographe."""

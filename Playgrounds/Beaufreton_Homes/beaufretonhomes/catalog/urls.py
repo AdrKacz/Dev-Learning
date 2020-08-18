@@ -11,4 +11,7 @@ urlpatterns = [
 
 	# The booking page (third page)
 	path('booking/', views.booking, name="booking"),
+
+	# Intern fetch reservation
+	path('reservation-dates/', views.reservation_dates, name="reservation-dates"),
 ]

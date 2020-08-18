@@ -14,6 +14,9 @@ const today = new Date();
 // List that store dates (0: start_date, 1: end_date)
 const dates_list = [null, null];
 
+// List that store fetch result
+let _fetch_reservations = {};
+
 // Function that displays dates on node if enable
 function display_date(node, content) {
 	node.textContent = content;
@@ -59,8 +62,6 @@ function update_text() {
 // Function that handle the click on date
 // Declared this way because init in datepicker.js
 handle_date_selection = function () {
-	console.log("Date has been selected");
-
 	// Add date to dates_list
 	const selected_date = datepicker.getDate()
 	if (!dates_list[0]) {
@@ -104,6 +105,11 @@ handle_date_selection = function () {
 
 // Function for the DatePickers
 function enabled_days(date) {
+	for (const [uid, dates] of Object.entries(_fetch_reservations)) {
+  		if (date >= new Date(dates.start) && date <= new Date(dates.end)) {
+  			return false;
+  		};
+	};
 	return true;
 };
 
@@ -120,18 +126,36 @@ function format_date(date) {
 	return '';
 };
 
-
+// Fetch date THEN Config
+fetch("/catalog/reservation-dates/")
+	.then((response) => response.json())
+	.then((json) => {
+		_fetch_reservations = json;
+	}).then((_) => {
+		// Config the DatePickers
+		datepicker.config({
+			first_date: today,
+		    initial_date: today,
+		    enabled_days: enabled_days,
+		    format: format_date,
+		    first_day_of_week: "Monday",
+		});
+	}).then((_) => {
+		// Set the text to the date value if any
+		if (inputs[0].value.length > 0 && inputs[1].value.length) {
+			datepicker.setDate(new Date(inputs[0].value));
+			datepicker.setDate(new Date(inputs[1].value));
+		};
+	})
+	.catch((error) => {
+		console.error('Error while fetching reserved dates from server or config the datepicker')
+	});
 // Config the DatePickers
-datepicker.config({
-	first_date: today,
-    initial_date: today,
-    enabled_days: enabled_days,
-    format: format_date,
-    first_day_of_week: "Monday",
-});
+// datepicker.config({
+// 	first_date: today,
+//     initial_date: today,
+//     enabled_days: enabled_days,
+//     format: format_date,
+//     first_day_of_week: "Monday",
+// });
 
-// Set the text to the date value if any
-if (inputs[0].value.length > 0 && inputs[1].value.length) {
-	datepicker.setDate(new Date(inputs[0].value));
-	datepicker.setDate(new Date(inputs[1].value));
-};

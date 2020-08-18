@@ -21,12 +21,9 @@ class LogementAdmin(admin.ModelAdmin):
 	"""Administration object for Logement models.
 	Defines:
 		- 	fields to be displayed in list view (list_display)
-		- 	adds inline addition of Reservation instances in Logement view (inlines)
 	"""
 
 	list_display = ('nom', 'prix', 'capacite')
-	inlines = [ReservationsInline]
-
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
@@ -37,12 +34,12 @@ class ReservationAdmin(admin.ModelAdmin):
 		- 	grouping of fields into sections (fieldsets)
 	"""
 
-	list_display = ('logement', 'debut', 'fin')
-	list_filter = ('logement', 'debut', 'fin')
+	list_display = ('debut', 'fin', "source", "uid")
+	list_filter = ('debut', 'fin', "source")
 
 	fieldsets = (
 		(None, {
-			'fields': ('logement',)
+			'fields': ('source', "uid", "description")
 		}),
 		('Dates', {
 			'fields': ('debut', 'fin')
@@ -88,6 +85,8 @@ class CalendrierAdmin(admin.ModelAdmin):
 	"""Administration object for Calendrier models.
 	Defines:
 		-	fields to be displayed in list view (list_display)
+		- 	adds inline addition of Reservation instances in Logement view (inlines)
 	"""
 
 	list_display = ("nom", "url")
+	inlines = [ReservationsInline]

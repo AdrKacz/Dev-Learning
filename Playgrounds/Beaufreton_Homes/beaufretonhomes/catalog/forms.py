@@ -11,10 +11,7 @@ import datetime
 from .models import Reservation, Option, Logement, Calendrier
 
 # Function to handle calendar import
-from .calendar_handling import read_calendar
-
-# To request the calendar from outside
-from urllib.request import urlopen
+from .calendar_handling import read_calendar, update_database
 
 
 class PickDatesForm(forms.Form):
@@ -59,15 +56,16 @@ class PickDatesForm(forms.Form):
 				raise ValidationError(_('Invalid date - end date before start date'))
 
 		# Get the calendar from outside (Airbnb)
-		if Calendrier.objects.all().count() > 0:
-			try:
-				url = Calendrier.objects.only('url')[0].url
-				html = urlopen(url).read().decode()
-				read_calendar(html)
-			except:
-				# Access Forbidden
-				print("Access to Calendar FORBIDDEN")
+		try:
+			update_database()
+		except:
+			print("Error while updating the Reservations Database")
 
+		# Check if not in reservation
+		is_between = Reservation.objects.filter(debut__lte=data_end, fin__gte=data_start).exists()
+		print("Between?", is_between)
+		if is_between:
+			raise ValidationError(_('Invalid date - date already reserved'))
 
 		return cleaned_data
 		
