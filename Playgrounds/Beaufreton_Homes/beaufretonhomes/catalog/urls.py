@@ -14,4 +14,7 @@ urlpatterns = [
 
 	# Intern fetch reservation
 	path('reservation-dates/', views.reservation_dates, name="reservation-dates"),
+
+	# Get Reservation (for Airbnb and others)
+	path('reservation-calendar/', views.ReservationFeed(), name="reservation-calendar")
 ]

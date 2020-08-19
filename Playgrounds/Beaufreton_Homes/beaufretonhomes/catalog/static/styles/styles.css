@@ -197,19 +197,35 @@ section#features article *:first-child{
 section#photos {
 	display: flex;
 	flex-wrap: wrap;
-	flex: 20vw;
 
 	align-items: center;
-	justify-content: space-around;
+	justify-content: center;
 }
 
 section#photos img {
 	box-sizing: border-box;
 	height: max(min(40vh, 20vw), min(20vh, 40vw));
 	width: max(min(40vh, 20vw), min(20vh, 40vw));
-	padding: 1vh 1vw;
+	padding: 0.1em;
 	object-fit: cover;
 }
+
+section#photos img:nth-of-type(1) {
+	border-radius: 0.5em 0 0 0
+}
+
+section#photos img:nth-of-type(5) {
+	border-radius: 0 0.5em 0 0
+}
+
+section#photos img:nth-of-type(6) {
+	border-radius: 0 0 0 0.5em
+}
+
+section#photos img:nth-of-type(10) {
+	border-radius: 0 0 0.5em 0
+}
+
 
 /*----------------------------------------*/
 /*----------------------------------------*/

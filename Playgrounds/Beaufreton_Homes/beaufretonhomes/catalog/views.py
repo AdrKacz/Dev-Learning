@@ -13,6 +13,12 @@ import re
 
 from .models import Logement, Reservation, Photographie, Caracteristique, Option
 
+# To update the Db
+from .calendar_handling import update_database
+
+# To send reservation outside
+from django_ical.views import ICalFeed
+
 def index(request):
 	"""View function for home page of site.
 	Handle a form in its core.
@@ -60,8 +66,9 @@ def index(request):
 
 			return HttpResponseRedirect(reverse('home-details'))
 
-	# If this is a GET (or any other method) create the default form
+	# If this is a GET (or any other method) create the default form (update the reservations before)
 	else:
+		update_database()
 		form = PickDatesForm()
 		context['form'] = form
 
@@ -226,3 +233,34 @@ def reservation_dates(request):
 		dates[date.uid] = {"start":date.debut, "end":date.fin}
 
 	return JsonResponse(dates)
+
+
+class ReservationFeed(ICalFeed):
+	"""Class taht generate an i-cal (.ics file) for Airbnb (and other)
+	Relates reservation that was done on this website.
+	"""
+
+	product_id = "-//beaufretonhomes.com"
+	timezone = "UTC+2"
+	file_name = "reservations.ics"
+
+	def items(self):
+		return Reservation.objects.filter(source__isnull=True).order_by("-debut")
+
+	def item_guid(self, item):
+		return f"{item.uid}{'@beaufretonhomes'}"
+
+	def item_title(self, item):
+		return f"Reservation {item.debut}-{item.fin}"
+
+	def item_description(self, item):
+		return f"{item.description}"
+
+	def item_start_datetime(self, item):
+		return item.debut
+
+	def item_end_datetime(self, item):
+		return item.fin
+
+	def item_link(self, item):
+		return ""

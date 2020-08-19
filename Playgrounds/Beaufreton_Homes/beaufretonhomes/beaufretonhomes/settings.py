@@ -25,12 +25,12 @@ MEDIA_URL = "/media/"
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1o9g+3s6*+jt%)u3^8)usqyw!8h=gllwc^@e2^q2eg8#)2$5pc'
-# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '1o9g+3s6*+jt%)u3^8)usqyw!8h=gllwc^@e2^q2eg8#)2$5pc')
+# SECRET_KEY = '1o9g+3s6*+jt%)u3^8)usqyw!8h=gllwc^@e2^q2eg8#)2$5pc' # For Testing
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '1o9g+3s6*+jt%)u3^8)usqyw!8h=gllwc^@e2^q2eg8#)2$5pc') # For Deployment
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+# DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", '') != "False"
 
 # Set hosts to allow any app on ??? and the local testing URL
 ALLOWED_HOSTS = ['127.0.0.1']

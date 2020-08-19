@@ -64,6 +64,8 @@
 	width: min(84vh, 84vw);
 	height: min(84, 84vw);
 
+	padding: 0 1vw
+
 }
 
 .datepicker table td,  .datepicker table th {
