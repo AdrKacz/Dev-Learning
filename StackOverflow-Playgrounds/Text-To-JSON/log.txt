@@ -1,0 +1,5 @@
+{"__TIMESTAMP":"2020-07-09T19:05:20.858013","__LABEL":"web_channel","__LEVEL":4,"__DIAGNOSE_SLOT":"","msg":"Port web_channel/diagnose_client not connected!"}
+{"__TIMESTAMP":"2020-07-09T19:05:21.229737","__LABEL":"context_logging_addon","__LEVEL":4,"__DIAGNOSE_SLOT":"","msg":"startup component"}
+{"__TIMESTAMP":"2020-07-09T19:05:21.229761","__LABEL":"context_logging_addon","__LEVEL":4,"__DIAGNOSE_SLOT":"","msg":"activate component"}
+{"__TIMESTAMP":"2020-07-09T19:05:21.229793","__LABEL":"context_monitoring_addon","__LEVEL":4,"__DIAGNOSE_SLOT":"","msg":"startup component"}
+{"__TIMESTAMP":"2020-07-09T19:05:21.229805","__LABEL":"context_monitoring_addon","__LEVEL":4,"__DIAGNOSE_SLOT":"","msg":"activate component"}
