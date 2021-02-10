@@ -1,0 +1,36 @@
+td.main-img img {
+  width: 100px;
+  height: auto;
+
+  padding-right: 10px;
+}
+
+td.main-details h1 {
+  font-size: 22px;
+
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+td.main-details h2 {
+  font-size: 18px;
+
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+td.main-details h3 {
+  font-size: 14px;
+
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+td.details-link img {
+  height: 32px;
+  width: auto;
+}
+
+th {
+  text-align: left;
+}
